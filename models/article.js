@@ -9,9 +9,9 @@ const articleSchema = mongoose.Schema({
   // 封面链接
   cover_link: { type: String, default: "" },
   // 标签
-  tags: { type: mongoose.Schema.Types.ObjectId, ref: 'Tag', required: true },
+  tags: { type: mongoose.Schema.Types.ObjectId, ref: 'Tag', required: false },
   // 分类
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: false },
   content: { type: String, required: true, validate: /\S+/ },
   // 文章类型 => 1: 普通文章，2: 简历, 3: 管理员介绍
   type: { type: Number, default: 1 },
@@ -26,11 +26,11 @@ const articleSchema = mongoose.Schema({
 });
 
 // 自增id
-articleSchema.plugin(autoIncrement.plugin, {
-  model: "Article",
-  field: "id",
-  startAt: 1,
-  incrementBy: 1
-});
+// articleSchema.plugin(autoIncrement.plugin, {
+//   model: "Article",
+//   field: "id",
+//   startAt: 1,
+//   incrementBy: 1
+// });
 
-model.exports = mongoose.model("Article", articleSchema);
+module.exports = mongoose.model("Article", articleSchema);
