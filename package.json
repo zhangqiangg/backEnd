@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangqiangg/backEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangqiangg/backEnd/issues"
+  },
+  "homepage": "https://github.com/zhangqiangg/backEnd#readme",
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "consola": "^2.11.0",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.12",
+    "mongoose-auto-increment": "^5.0.1",
+    "node-fetch": "^2.6.0",
+    "yargs": "^15.0.2"
+  }
+}
