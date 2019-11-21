@@ -23,7 +23,7 @@ exports.connect = () => {
   });
   // 连接成功
   mongoose.connection.once("open", () => {
-    consola.warn("数据库连接成功");
+    consola.success("数据库连接成功");
   });
 
   // 自增id初始化

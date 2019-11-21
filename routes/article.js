@@ -33,7 +33,7 @@ exports.addArticle = (req, res) => {
   tempArticle
     .save()
     .then(data => {
-      responseClient(res, 200, 0, "保存成功", data);
+      responseClient(res, 200, 200, "新增成功", data);
     })
     .catch(err => {
       responseClient(err);
@@ -42,8 +42,10 @@ exports.addArticle = (req, res) => {
 
 // 文章列表
 exports.getArticleList = (req, res) => {
-  let pageNum = parseInt(req.query.pageNum) || 1;
-  let pageSize = parseInt(req.query.pageSize) || 10;
+  const {
+    pageNum = parseInt(req.query.pageNum) || 1,
+    pageSize = parseInt(req.query.pageSize) || 10
+  } = req.body;
   let fields = {
     title: 1,
     author: 1,
@@ -72,10 +74,66 @@ exports.getArticleList = (req, res) => {
       .then(data => {
         responseData.count = count;
         responseData.list = data;
-        responseClient(res, 200, 0, "成功", responseData);
+        responseClient(res, 200, 200, "成功", responseData);
       })
       .catch(err => {
         responseClient(err);
       });
   }).exec((err, doc) => {});
+};
+
+//编辑文章
+exports.updateArticle = (req, res) => {
+  const {
+    title,
+    author,
+    keyword,
+    content,
+    describe,
+    cover_link,
+    tags,
+    category,
+    state,
+    type,
+    origin,
+    id
+  } = req.body;
+  Article.update(
+    { id: id },
+    {
+      title,
+      author,
+      keyword,
+      content,
+      describe,
+      tags,
+      category,
+      state,
+      type,
+      origin,
+      cover_link
+    }
+  )
+    .then(data => {
+      responseClient(res, 200, 200, "编辑成功");
+    })
+    .catch(err => {
+      responseClient(err);
+    });
+};
+
+// 删除文章
+exports.deleteArticle = (req, res) => {
+  const { id } = req.body;
+  Article.deleteMany({ id: id })
+    .then(data => {
+      if (data.n === 1) {
+        responseClient(res, 200, 200, "删除成功!");
+      } else {
+        responseClient(res, 200, -1, "文章不存在");
+      }
+    })
+    .catch(err => {
+      responseClient(err);
+    });
 };
