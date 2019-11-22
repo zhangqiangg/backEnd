@@ -1,5 +1,3 @@
-# backEnd
-
 ## 博客后端
 
 
@@ -9,12 +7,8 @@
 
 ```
 https://github.com/mrvautin/adminMongo
-```
 
-```
 npm install
-```
 
-```
 npm start
 ```
