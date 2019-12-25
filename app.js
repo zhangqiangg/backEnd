@@ -15,5 +15,4 @@ const route = require("./routes/index");
 //初始化所有路由
 route(app);
 
-
 module.exports = app;
